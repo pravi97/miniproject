@@ -60,8 +60,10 @@ INSTALLED_APPS = [
     'custom_field',
     'phonenumber_field',
     'django_cached_field',
+    'administration',
     'sis',
     'schedule',
+    'work_study',
 ]
 
 MIDDLEWARE = [
