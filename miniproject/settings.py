@@ -64,6 +64,10 @@ INSTALLED_APPS = [
     'sis',
     'schedule',
     'work_study',
+    'grades',
+    'gradebook',
+    'attendance',
+    'benchmarks',
 ]
 
 MIDDLEWARE = [
