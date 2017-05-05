@@ -46,6 +46,7 @@ for environment_variable in (
 
 # Application definition
 INSTALLED_APPS = [
+    'autocomplete_light',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -55,9 +56,12 @@ INSTALLED_APPS = [
     'djcelery',
     'ckeditor',
     'constance',
+    'reversion',
     'custom_field',
+    'phonenumber_field',
     'django_cached_field',
     'sis',
+    'schedule',
 ]
 
 MIDDLEWARE = [
@@ -133,6 +137,11 @@ USE_I18N = True
 USE_L10N = True
 
 USE_TZ = True
+
+# Global date validators, to help prevent data entry errors
+import datetime
+from django.core.validators import MinValueValidator # Could use MaxValueValidator too
+DATE_VALIDATORS=[MinValueValidator(datetime.date(1970,1,1))] # Unix epoch!
 
 
 # Static files (CSS, JavaScript, Images)
@@ -270,3 +279,27 @@ CELERY_RESULT_BACKEND='djcelery.backends.database:DatabaseBackend'
 #         'schedule': timedelta(minutes=30),
 #     },
 # }
+
+
+
+MIGRATIONS_DISABLED = False
+if 'TRAVIS' in os.environ:
+    DATABASES = {
+        'default': {
+            'ENGINE':   'django.db.backends.postgresql_psycopg2',
+            'NAME':     'travisci',
+            'USER':     'postgres',
+            'PASSWORD': '',
+            'HOST':     'localhost',
+            'PORT':     '',
+        }
+    }
+elif 'test' in sys.argv:
+    # Don't take fucking years to run a test
+    class DisableMigrations(object):
+        def __contains__(self, item):
+            return True
+        def __getitem__(self, item):
+            return "notmigrations"
+    MIGRATION_MODULES = DisableMigrations()
+    MIGRATIONS_DISABLED = True
