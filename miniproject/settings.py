@@ -67,7 +67,9 @@ INSTALLED_APPS = [
     'grades',
     'gradebook',
     'attendance',
+    'admissions',
     'benchmarks',
+    'benchmark_grade',
 ]
 
 MIDDLEWARE = [
