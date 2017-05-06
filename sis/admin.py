@@ -197,7 +197,7 @@ class StudentAdmin(VersionAdmin, CustomFieldAdmin):
             }
         ),)
 
-    change_list_template = "admin/sis/student/change_list.html"
+    # change_list_template = "admin/sis/student/change_list.html"
     form = autocomplete_light.modelform_factory(Student)
     readonly_fields = ['year']
     search_fields = ['first_name', 'last_name', 'username', 'unique_id', 'street', 'state', 'zip', 'id', 'studentnumber__number']
@@ -342,7 +342,7 @@ class UserForm(UserChangeForm):
     """ Extended User form to provide extra validation """
     class Meta:
         model = User
-        fields = "__all__" 
+        fields = "__all__"
 
     def clean(self):
         super(UserForm, self).clean()

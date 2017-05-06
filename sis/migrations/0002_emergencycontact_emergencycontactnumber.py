@@ -24,7 +24,7 @@ class Migration(migrations.Migration):
                 ('lname', models.CharField(max_length=255, verbose_name='Last Name')),
                 ('relationship_to_student', models.CharField(blank=True, max_length=500)),
                 ('street', models.CharField(blank=True, help_text='Include apt number', max_length=255, null=True)),
-                ('city', models.CharField(blank=True, default=sis.models.get_city, max_length=255, null=True)),
+                ('city', models.CharField(blank=True, default='', max_length=255, null=True)),
                 ('state', models.CharField(blank=True, default='', max_length=255, null=True)),
                 ('pin', models.CharField(blank=True, max_length=6, null=True)),
                 ('email', models.EmailField(blank=True, max_length=254)),

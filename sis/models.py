@@ -107,8 +107,8 @@ class PhoneNumber(models.Model):
         else:
             return self.number
 
-def get_city():
-    return Configuration.get_or_default("Default City", "").value
+# def get_city():
+#     return Configuration.get_or_default("Default City", "").value
 
 class EmergencyContact(models.Model):
     fname = models.CharField(max_length=255, verbose_name="First Name")
@@ -116,9 +116,9 @@ class EmergencyContact(models.Model):
     lname = models.CharField(max_length=255, verbose_name="Last Name")
     relationship_to_student = models.CharField(max_length=500, blank=True)
     street = models.CharField(max_length=255, blank=True, null=True, help_text="Include apt number")
-    city = models.CharField(max_length=255, blank=True, null=True, default=get_city)
+    city = models.CharField(max_length=255, blank=True, null=True, default='')
     state = models.CharField(max_length=255,blank=True, null=True, default='')
-    pin = models.CharField(max_length=6, blank=True, null=True)
+    zip = models.CharField(max_length=6, blank=True, null=True)
     email = models.EmailField(blank=True)
     primary_contact = models.BooleanField(default=True, help_text="This contact is where mailings should be sent to. In the event of an emergency, this is the person that will be contacted first.")
     emergency_only = models.BooleanField(default=False, help_text="Only contact in case of emergency")
@@ -729,8 +729,7 @@ class SchoolYear(models.Model):
     active_year = models.BooleanField(default=False,
         help_text="DANGER!! This is the current school year. There can only be one and setting this will remove it from other years. " \
                   "If you want to change the active year you almost certainly want to click Management, Change School Year.")
-    benchmark_grade = models.BooleanField(default=get_default_benchmark_grade,
-                                          help_text="Causes additional information to appear on transcripts. The configuration option \"Benchmark-based grading\" sets the default for this field.")
+    benchmark_grade = models.BooleanField(default='',help_text="Causes additional information to appear on transcripts. The configuration option \"Benchmark-based grading\" sets the default for this field.")
 
     class Meta:
         ordering = ('-start_date',)
