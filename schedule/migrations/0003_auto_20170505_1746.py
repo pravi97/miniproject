@@ -27,7 +27,7 @@ class Migration(migrations.Migration):
                 ('homeroom', models.BooleanField(default=False, help_text='Homerooms can be used for attendance')),
                 ('graded', models.BooleanField(default=True, help_text='Teachers can submit grades for this course')),
                 ('description', models.TextField(blank=True)),
-                ('credits', models.DecimalField(decimal_places=2, default=schedule.models.get_credits_default, help_text='Credits affect GPA.', max_digits=5)),
+                ('credits', models.DecimalField(decimal_places=2, default='', help_text='Credits affect GPA.', max_digits=5)),
             ],
         ),
         migrations.CreateModel(

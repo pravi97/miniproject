@@ -61,6 +61,7 @@ INSTALLED_APPS = [
     'phonenumber_field',
     'django_cached_field',
     'report_builder',
+    'floppyforms',
     'responsive_dashboard',
     'administration',
     'sis',

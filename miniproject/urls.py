@@ -15,10 +15,16 @@ Including another URLconf
 """
 from django.conf.urls import url,include
 from django.contrib import admin
+from django.contrib.auth.decorators import login_required
+from django.conf import settings
+from django.contrib import admin
+from responsive_dashboard import views as dashboard_views
+from django.http import HttpResponse
 
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
     url(r'^autocomplete/', include('autocomplete_light.urls')),
     url(r'^report_builder/', include('report_builder.urls')),
     url(r'^', include('responsive_dashboard.urls')),
+    url(r'^administration/', include('administration.urls')),
 ]

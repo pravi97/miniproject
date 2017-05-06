@@ -431,9 +431,9 @@ def get_course_type_default():
         return CourseType.objects.get(is_default=True).pk
     except CourseType.DoesNotExist:
         return CourseType.build_default().pk
-
-def get_credits_default():
-    return Configuration.get_or_default(name='Default course credits').value
+#
+# def get_credits_default():
+#     return Configuration.get_or_default(name='Default course credits').value
 
 class Course(models.Model):
     is_active = models.BooleanField(default=True)
@@ -446,7 +446,7 @@ class Course(models.Model):
         help_text="Credits affect GPA.",
         # WARNING: this default must NOT be used for migrations! Courses whose
         # credits=None should have their credits set to 0
-        default=get_credits_default)
+        default='')
     department = models.ForeignKey(Department, blank=True, null=True)
     level = models.ForeignKey('sis.GradeLevel', blank=True, null=True, verbose_name="Grade Level")
     course_type = models.ForeignKey(CourseType,
