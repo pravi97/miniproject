@@ -27,7 +27,7 @@ SECRET_KEY = 'jr190jg-mv=-810@s-!xnu2l@h4$n7uj9gd6mhnxxaa6nhcdm0'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['*',]
 
 
 for environment_variable in (
@@ -60,6 +60,7 @@ INSTALLED_APPS = [
     'custom_field',
     'phonenumber_field',
     'django_cached_field',
+    'report_builder',
     'administration',
     'sis',
     'schedule',
@@ -94,6 +95,8 @@ TEMPLATES = [
             'context_processors': [
                 'django.template.context_processors.debug',
                 'django.template.context_processors.request',
+                'django.template.context_processors.static',
+                'django.template.context_processors.media',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
             ],
@@ -312,3 +315,7 @@ elif 'test' in sys.argv:
             return "notmigrations"
     MIGRATION_MODULES = DisableMigrations()
     MIGRATIONS_DISABLED = True
+
+# django-report-builder
+REPORT_BUILDER_GLOBAL_EXPORT = True
+REPORT_BUILDER_ASYNC_REPORT = True

@@ -12,6 +12,7 @@ from constance import config
 import logging
 from django_thumbs.db.models import ImageWithThumbsField
 from datetime import date
+from administration.models import Configuration
 from custom_field.custom_field import CustomFieldModel
 import sys
 from ckeditor.fields import RichTextField

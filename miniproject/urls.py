@@ -19,4 +19,5 @@ from django.contrib import admin
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
     url(r'^autocomplete/', include('autocomplete_light.urls')),
+    url(r'^report_builder/', include('report_builder.urls')),
 ]
