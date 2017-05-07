@@ -9,30 +9,31 @@ from tempfile import mkstemp
 from sis.models import Student, UserPreference, SchoolYear, GradeLevel, Cohort
 from schedule.models import MarkingPeriod, CourseMeet, Award
 from administration.models import Template
-import autocomplete_light
+import autocomplete_light.shortcuts as al
 import datetime
 
-autocomplete_light.autodiscover()
 
 class UserPreferenceForm(forms.ModelForm):
     class Meta:
         model = UserPreference
+        fields = "__all__"
         widgets = {
             'prefered_file_format': forms.Select,
             'include_deleted_students': forms.CheckboxInput,
             'course_sort': forms.Select,
             'gradebook_preference': forms.Select,
         }
+
 class DeletedStudentLookupForm(forms.Form):
     # See https://github.com/yourlabs/django-autocomplete-light/issues/315
     try:
-        student = autocomplete_light.ModelChoiceField('StudentUserAutocomplete')
+        student = al.ModelChoiceField('StudentUserAutocomplete')
     except ProgrammingError:
         pass
 
 class StudentLookupForm(forms.Form):
     try:
-        student = autocomplete_light.ModelChoiceField('StudentActiveStudentAutocomplete')
+        student = al.ModelChoiceField('StudentActiveStudentAutocomplete')
     except ProgrammingError:
         pass
 
@@ -93,7 +94,7 @@ class StudentSelectForm(TimeBasedForm):
     """ Generic student selection form."""
     all_students = forms.BooleanField(required=False, widget=forms.CheckboxInput(attrs={'onclick':''}))
     try:
-        student = autocomplete_light.ModelChoiceField('StudentActiveStudentAutocomplete')
+        student = al.ModelChoiceField('StudentActiveStudentAutocomplete')
     except ProgrammingError:
         pass
     sort_by = forms.ChoiceField(choices=(('last_name', 'Student last name'), ('year', 'School year'), ('cohort', 'Primary Cohort')), initial=1)

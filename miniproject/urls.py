@@ -23,8 +23,11 @@ from django.http import HttpResponse
 
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
+    # url(r'^ckeditor/', include('ckeditor_urls')),
     url(r'^autocomplete/', include('autocomplete_light.urls')),
     url(r'^report_builder/', include('report_builder.urls')),
     url(r'^', include('responsive_dashboard.urls')),
     url(r'^administration/', include('administration.urls')),
+    url(r'^grades/', include('grades.urls')),
+    url(r'^course/', include('grades.urls')),
 ]
