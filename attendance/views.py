@@ -5,7 +5,7 @@ from django.contrib.admin.models import LogEntry, ADDITION, CHANGE
 from django.core.exceptions import PermissionDenied
 from django.core.urlresolvers import reverse
 from django.contrib.contenttypes.models import ContentType
-from django.db.models import Q, Sum, Count, get_model
+from django.db.models import Q, Sum, Count
 from django.forms.models import BaseModelFormSet, modelformset_factory
 from django.forms.formsets import formset_factory
 from django.http import HttpResponse, HttpResponseRedirect

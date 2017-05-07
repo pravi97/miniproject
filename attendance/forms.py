@@ -8,11 +8,13 @@ from sis.models import Student
 from sis.forms import TimeBasedForm
 import datetime
 import autocomplete_light
+import autocomplete_light.shortcuts as al
 
 
 class StudentAttendanceForm(forms.ModelForm):
     class Meta:
         model = StudentAttendance
+        fields="__all__"
         widgets = {
             'student': forms.HiddenInput(attrs={'tabindex':"-1", 'class':'student_select', 'onfocus':"this.defaultIndex=this.selectedIndex;", 'onchange':"this.selectedIndex=this.defaultIndex;"}),
             'date': forms.HiddenInput(),
@@ -29,7 +31,7 @@ class StudentMultpleAttendanceForm(autocomplete_light.ModelForm):
             'time': adminwidgets.AdminTimeWidget(),
         }
         fields = ('date', 'status', 'time', 'notes', 'private_notes')
-    student = autocomplete_light.ModelMultipleChoiceField('StudentUserAutocomplete')
+    student = al.ModelMultipleChoiceField('StudentUserAutocomplete')
 
 
 class CourseSectionAttendanceForm(forms.Form):
@@ -54,7 +56,7 @@ class AttendanceViewForm(forms.Form):
     order_by = forms.ChoiceField(initial=0, choices=(('Date','Date'),('Status','Status'),))
     include_private_notes = forms.BooleanField(required=False)
     try:
-        student = autocomplete_light.ModelChoiceField('StudentUserAutocomplete')
+        student = al.ModelChoiceField('StudentUserAutocomplete')
     except ProgrammingError:
         pass
 

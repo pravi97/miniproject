@@ -47,16 +47,23 @@ for environment_variable in (
 # Application definition
 INSTALLED_APPS = [
     'autocomplete_light',
+    'django.contrib.contenttypes',
+    'grappelli.dashboard',
+    'grappelli',
     'django.contrib.admin',
     'django.contrib.auth',
-    'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'dajaxice',
+    'scaffold_report',
+    'simple_import',
     'djcelery',
     'ckeditor',
     'constance',
     'reversion',
+    'massadmin',
+    'admin_export',
     'custom_field',
     'phonenumber_field',
     'django_cached_field',
@@ -102,6 +109,8 @@ TEMPLATES = [
                 'django.contrib.messages.context_processors.messages',
             ],
             'loaders': [
+                'django.template.loaders.filesystem.Loader',
+                'django.template.loaders.app_directories.Loader',
                 'django.template.loaders.eggs.Loader',
             ]
         },
@@ -323,3 +332,21 @@ elif 'test' in sys.argv:
 # django-report-builder
 REPORT_BUILDER_GLOBAL_EXPORT = True
 REPORT_BUILDER_ASYNC_REPORT = True
+
+STATICFILES_FINDERS = (
+    'django.contrib.staticfiles.finders.FileSystemFinder',
+    'django.contrib.staticfiles.finders.AppDirectoriesFinder',
+    'dajaxice.finders.DajaxiceFinder',
+)
+
+# #GRAPPELLI
+# ADMIN_TOOLS_MENU = 'ecwsp.menu.CustomMenu'
+# ADMIN_MEDIA_PREFIX = STATIC_URL + "grappelli/"
+GRAPPELLI_INDEX_DASHBOARD = 'dashboard.CustomIndexDashboard'
+
+GRAPPELLI_ADMIN_TITLE = "Information System for colleges"
+
+
+AUTHENTICATION_BACKENDS = (
+    'sis.backends.CaseInsensitiveModelBackend',
+)
